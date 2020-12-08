@@ -17,11 +17,11 @@ const Login = () => {
 					labelCol={{ span: 6 }}
 					wrapperCol={{ span: 18 }}
 					labelAlign="left"
-					onFinish={({ username, password }) => login({ username, password })}
+					onFinish={({ userName, password }) => login({ userName, password })}
 				>
 					<Form.Item
 						label="Username"
-						name="username"
+						name="userName"
 						rules={[{ required: true, message: "Please input your username!" }]}
 						hasFeedback
 					>

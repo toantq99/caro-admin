@@ -6,11 +6,14 @@ import React from "react";
 import "./styles.scss";
 
 const Home = () => {
-	const { signin } = useAuth();
-	console.log(signin);
+	const {
+		user: { userName },
+		logout,
+	} = useAuth();
 	return (
 		<div className="home-wrapper">
-			<button onClick={() => signin()}>login</button>
+			<button onClick={() => logout()}>Logout</button>
+			Welcome, {userName}
 		</div>
 	);
 };

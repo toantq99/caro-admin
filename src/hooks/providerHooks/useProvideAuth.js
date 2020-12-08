@@ -7,17 +7,16 @@ import API_URL from "@/config/API";
 const useProvideAuth = () => {
 	const [user, setUser] = useState(null);
 
-	const login = ({ username, password }) => {
-		Axios.post(API_URL + "/login", { username, password })
-			.then(({ data: { user, token } }) => {
+	const login = ({ userName, password }) => {
+		Axios.post(API_URL + "/admins/login", { userName, password })
+			.then(({ data: { token, ...user } }) => {
 				localStorage.setItem("token", token);
 				setUser(user);
 			})
-			.catch((err) => {
-				// console.log(err.reponse);
-				// message.error("Login Fail");
-				localStorage.setItem("token", true);
-				setUser(true);
+			.catch(({ response }) => {
+				response && response.data.message
+					? message.error(response.data.message)
+					: message.error("Login Fail");
 			});
 	};
 
@@ -42,7 +41,7 @@ const useProvideAuth = () => {
 		const token = localStorage.getItem("token");
 		setTimeout(() => {
 			checkToken(token);
-		}, 1000);
+		}, 500);
 	}, []);
 
 	return {
