@@ -17,14 +17,25 @@ const Board = () => {
 		return null;
 	}
 
-	const { squares } = currentBoard;
+	const { squares, x, y } = currentBoard;
 
 	return (
 		<div className="board-wrapper">
 			{squares.map((row, rowIndex) => (
 				<div key={rowIndex}>
 					{row.map((square, colIndex) => (
-						<Square value={square} key={rowIndex + "-" + colIndex} />
+						<Square
+							value={square}
+							key={rowIndex + "-" + colIndex}
+							isWinCell={
+								Array.isArray(winCells) &&
+								step === history.length - 1 &&
+								!!winCells.find(
+									({ coorX, coorY }) => coorX === rowIndex && coorY === colIndex
+								)
+							}
+							isCurrent={x === rowIndex && y === colIndex}
+						/>
 					))}
 				</div>
 			))}

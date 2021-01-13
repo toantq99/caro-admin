@@ -17,7 +17,15 @@ export const columns = ({ user }) => [
 		title: "Đối thủ",
 		key: "rival",
 		render: ({ xPlayer, oPlayer }) =>
-			xPlayer.sub === user.sub ? oPlayer.displayName : xPlayer.displayName,
+			xPlayer.sub === user.sub ? (
+				<a href={"/profile/" + oPlayer.sub} target="_blank" rel="noreferrer">
+					{oPlayer.displayName}
+				</a>
+			) : (
+				<a href={"/profile/" + xPlayer.sub} target="_blank" rel="noreferrer">
+					{xPlayer.displayName}
+				</a>
+			),
 	},
 	{
 		title: "Kết quả",

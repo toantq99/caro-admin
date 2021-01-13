@@ -4,9 +4,12 @@ import classnames from "classnames";
 import React from "react";
 import "./style.scss";
 
-const Square = ({ value, isWinCell }) => (
+const Square = ({ value, isWinCell, isCurrent }) => (
 	<Button
-		className={classnames("square-wrapper", { "win-cell": isWinCell })}
+		className={classnames("square-wrapper", {
+			current: isCurrent,
+			"win-cell": isWinCell,
+		})}
 		style={{
 			color: value === "X" ? playerColorMapping.X : playerColorMapping.O,
 		}}

@@ -5,6 +5,7 @@ import Board from "@/pages/GameReplay/Board";
 import ChatArea from "@/pages/GameReplay/ChatArea";
 import ControlStep from "@/pages/GameReplay/ControlStep";
 import PlayerArea from "@/pages/GameReplay/PlayerArea";
+import Status from "@/pages/GameReplay/Status";
 import { Result, Spin } from "antd";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -34,6 +35,7 @@ const GameReplay = () => {
 			{data ? (
 				<div className="game-replay-wrapper">
 					<div className="left">
+						<Status />
 						<PlayerArea />
 					</div>
 					<div className="center">
