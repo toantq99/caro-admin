@@ -11,6 +11,7 @@ import { Route, Switch } from "react-router-dom";
 
 const Main = () => {
 	const { isLoading } = useAuth0();
+
 	return isLoading ? (
 		<AuthenticatingIndicator />
 	) : (

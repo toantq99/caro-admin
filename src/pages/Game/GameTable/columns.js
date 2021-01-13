@@ -8,7 +8,7 @@ export const columns = [
 		key: "id",
 	},
 	{
-		title: "Player X",
+		title: "Người chơi 1",
 		key: "xPlayer",
 		dataIndex: "xPlayer",
 		render: (user) => (
@@ -18,7 +18,7 @@ export const columns = [
 		),
 	},
 	{
-		title: "Player O",
+		title: "Người chơi 2",
 		key: "oPlayer",
 		dataIndex: "oPlayer",
 		render: (user) => (
@@ -28,7 +28,7 @@ export const columns = [
 		),
 	},
 	{
-		title: "Winner",
+		title: "Người thắng",
 		key: "winner",
 		render: (winner, { xPlayer, oPlayer, isDraw }) =>
 			isDraw ? (
@@ -56,7 +56,7 @@ export const columns = [
 		render: (date) => moment(new Date(date)).fromNow(),
 	},
 	{
-		title: "Actions",
+		title: "",
 		key: "actions",
 		dataIndex: "id",
 		render: (id) => (

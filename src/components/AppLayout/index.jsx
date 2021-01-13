@@ -24,7 +24,7 @@ const AppLayout = ({ children }) => {
 				<h1 style={{ color: "white", margin: 0 }}>Carona Admin</h1>
 
 				<Button type="link" style={{ color: "white" }} onClick={logout}>
-					Logout
+					Đăng xuất
 				</Button>
 			</Header>
 			<Layout>

@@ -1,8 +1,8 @@
 import { fetchUserListSuccess, refreshUserList } from "@/actions/User";
 import API_URL from "@/config/API";
+import useAxios from "@/hooks/useAxios";
 import { columns } from "@/pages/User/UserTable/columns";
 import { Input, message, Modal, Table } from "antd";
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -22,6 +22,7 @@ const UserTable = () => {
 	const [filteredList, setFilteredList] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const { push } = useHistory();
+	const Axios = useAxios();
 
 	useEffect(() => {
 		setFilteredList(list);
@@ -36,7 +37,7 @@ const UserTable = () => {
 					setLoading(false);
 				}, 500)
 			);
-	}, [dispatch, shouldRefresh]);
+	}, [Axios, dispatch, shouldRefresh]);
 
 	const handleBlockUser = (user) => {
 		Modal.confirm({
@@ -75,11 +76,15 @@ const UserTable = () => {
 			<div className="title">
 				<h2>List User</h2>
 				<Input.Search
-					onSearch={(value) =>
-						setFilteredList(
-							list.filter((room) => checkMatchSearch(room, value))
-						)
-					}
+					onSearch={(value) => {
+						setLoading(true);
+						setTimeout(() => {
+							setFilteredList(
+								list.filter((room) => checkMatchSearch(room, value))
+							);
+							setLoading(false);
+						}, 1000);
+					}}
 					name="search"
 					className="search-input"
 				/>

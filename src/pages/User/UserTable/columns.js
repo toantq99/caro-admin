@@ -12,7 +12,7 @@ export const columns = ({
 		key: "id",
 	},
 	{
-		title: "Display Name",
+		title: "Tên hiển thị",
 		dataIndex: "displayName",
 		key: "displayName",
 	},
@@ -28,19 +28,19 @@ export const columns = ({
 		render: (sub) => sub.slice(0, sub.indexOf("|")),
 	},
 	{
-		title: "Point",
+		title: "Điểm",
 		dataIndex: "point",
 		key: "point",
 	},
 	{
-		title: "Created At",
+		title: "Ngày tạo",
 		dataIndex: "created_at",
 		key: "created_at",
 		render: (created_at) =>
 			moment(new Date(created_at)).format("DD/MM/YYYY HH:mm"),
 	},
 	{
-		title: "Status",
+		title: "Trạng thái",
 		dataIndex: "isLocked",
 		key: "isLocked",
 		render: (isLocked) =>
@@ -51,12 +51,12 @@ export const columns = ({
 			),
 	},
 	{
-		title: "Actions",
+		title: "",
 		key: "actions",
 		render: (user) => (
 			<Space>
 				<a href={"/profile/" + user.sub} target="_blank" rel="noreferrer">
-					<Button onClick>Profile</Button>
+					<Button onClick>Thông tin</Button>
 				</a>
 
 				<Button
@@ -67,7 +67,7 @@ export const columns = ({
 						user.isLocked ? handleUnblockUser(user) : handleBlockUser(user)
 					}
 				>
-					{user.isLocked ? "Unblock" : "Block"}
+					{user.isLocked ? "Bỏ chặn" : "Chặn"}
 				</Button>
 			</Space>
 		),

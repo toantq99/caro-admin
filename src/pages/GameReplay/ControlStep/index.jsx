@@ -29,7 +29,7 @@ const ControlStep = () => {
 					disabled={step === 0}
 					onClick={() => dispatch(setReplayStep(0))}
 				>
-					First Step
+					Đầu tiên
 				</Button>
 				<Button
 					icon={<LeftCircleFilled />}
@@ -38,7 +38,7 @@ const ControlStep = () => {
 					disabled={step === 0}
 					onClick={() => handleStep(-1)}
 				>
-					Prev Step
+					Về trước
 				</Button>
 				<Button
 					icon={<RightCircleFilled />}
@@ -47,7 +47,7 @@ const ControlStep = () => {
 					disabled={step === history.length - 1}
 					onClick={() => handleStep(1)}
 				>
-					Next Step
+					Tiếp theo
 				</Button>
 				<Button
 					icon={<FastForwardOutlined />}
@@ -57,7 +57,7 @@ const ControlStep = () => {
 						dispatch(setReplayStep(Math.max(history.length - 1, 0)))
 					}
 				>
-					Last Step
+					Cuối cùng
 				</Button>
 			</Space>
 		</div>

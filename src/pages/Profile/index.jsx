@@ -1,11 +1,11 @@
 import { fetchProfileSuccess } from "@/actions/Profile";
+import LoadingIndicator from "@/components/LoadingIndicator";
 import API_URL from "@/config/API";
+import useAxios from "@/hooks/useAxios";
 import useRouter from "@/hooks/useRouter";
 import GameHistory from "@/pages/Profile/GameHistory";
 import UserInfo from "@/pages/Profile/UserInfo";
 import UserTrophy from "@/pages/Profile/UserTrophy";
-import { Spin } from "antd";
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./style.scss";
@@ -14,6 +14,7 @@ const Profile = () => {
 	const dispatch = useDispatch();
 	const { params } = useRouter();
 	const [loading, setLoading] = useState(false);
+	const Axios = useAxios();
 
 	useEffect(() => {
 		setLoading(true);
@@ -24,17 +25,17 @@ const Profile = () => {
 					setLoading(false);
 				}, 1000)
 			);
-	}, [dispatch, params]);
+	}, [Axios, dispatch, params]);
 
-	return (
-		<Spin spinning={loading}>
-			<div className="profile-wrapper">
-				<UserTrophy />
-				<UserInfo />
+	return loading ? (
+		<LoadingIndicator />
+	) : (
+		<div className="profile-wrapper">
+			<UserTrophy />
+			<UserInfo />
 
-				<GameHistory />
-			</div>
-		</Spin>
+			<GameHistory />
+		</div>
 	);
 };
 

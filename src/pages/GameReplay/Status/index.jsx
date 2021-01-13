@@ -9,10 +9,10 @@ const Status = () => {
 	} = useSelector((state) => state.gameReplay);
 
 	let result;
-	if (isDraw) result = "Draw";
+	if (isDraw) result = "Hòa";
 	else
 		result =
-			"Winner: " +
+			"Thắng cuộc: " +
 			(winner === xPlayer.sub ? xPlayer.displayName : oPlayer.displayName);
 
 	return (

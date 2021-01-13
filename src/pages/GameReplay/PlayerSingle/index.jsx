@@ -8,7 +8,7 @@ const PlayerSingle = ({ isPlayerX = false, player }) => {
 	return (
 		<div className="player-single-wrapper">
 			<Tag color={playerColorMapping[isPlayerX ? "X" : "O"]}>
-				Player {isPlayerX ? "X" : "O"}
+				Người chơi {isPlayerX ? "X" : "O"}
 			</Tag>
 			<Avatar src={picture} size={100} />
 			<h3>{displayName}</h3>
