@@ -1,5 +1,5 @@
+import { Game, Home, NotFound, User } from "@/routers/lazyRoutes";
 import React from "react";
-import { Home, NotFound, Login } from "@/routers/lazyRoutes";
 import { Redirect } from "react-router-dom";
 
 const publicRoutes = [
@@ -14,15 +14,19 @@ const publicRoutes = [
 	},
 ];
 
-const nonUserRoutes = [
-	{
-		key: "login",
-		path: "/login",
-		component: Login,
-	},
-];
-
 const privateRoutes = [
+	{
+		key: "user",
+		path: "/user",
+		component: User,
+		exact: true,
+	},
+	{
+		key: "game",
+		path: "/game",
+		component: Game,
+		exact: true,
+	},
 	{
 		key: "home",
 		path: "/",
@@ -31,4 +35,4 @@ const privateRoutes = [
 	},
 ];
 
-export { publicRoutes, privateRoutes, nonUserRoutes };
+export { publicRoutes, privateRoutes };

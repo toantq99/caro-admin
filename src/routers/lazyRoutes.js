@@ -9,5 +9,6 @@ const delayImport = (ms = 500) => (promise) =>
 	);
 
 export const Home = lazy(() => delayImport()(import("@/pages/Home")));
-export const Login = lazy(() => delayImport()(import("@/pages/Login")));
+export const User = lazy(() => delayImport()(import("@/pages/User")));
+export const Game = lazy(() => delayImport()(import("@/pages/Game")));
 export const NotFound = lazy(() => import("@/pages/NotFound"));

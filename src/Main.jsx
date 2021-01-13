@@ -1,33 +1,28 @@
 // libs
+// components
+import AppLayout from "@/components/AppLayout";
+import AuthenticatingIndicator from "@/components/AuthenticatingIndicator";
+// routers
+import { privateRoutes } from "@/routers";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-// components
-import AuthenticatingIndicator from "@/components/AuthenticatingIndicator";
-import NonUserRoute from "@/components/NonUserRoute";
-import PrivateRoute from "@/components/PrivateRoute";
-// hooks
-import useAuth from "@/hooks/useAuth";
-// routers
-import { privateRoutes, publicRoutes, nonUserRoutes } from "@/routers";
 
 const Main = () => {
-	const { user } = useAuth();
-	return user === null ? (
+	const { isLoading } = useAuth0();
+	return isLoading ? (
 		<AuthenticatingIndicator />
 	) : (
-		<>
-			<Switch>
-				{nonUserRoutes.map((route) => (
-					<NonUserRoute {...route} />
-				))}
+		<Switch>
+			<AppLayout>
 				{privateRoutes.map((route) => (
-					<PrivateRoute {...route} />
+					<Route
+						{...route}
+						component={withAuthenticationRequired(route.component)}
+					/>
 				))}
-				{publicRoutes.map((route) => (
-					<Route {...route} />
-				))}
-			</Switch>
-		</>
+			</AppLayout>
+		</Switch>
 	);
 };
 
