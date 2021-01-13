@@ -1,7 +1,13 @@
 import { PROFILE_ACTION_TYPES } from "@/constants/actionTypes";
 
 const initialState = {
-	info: {},
+	info: {
+		win: 0,
+		lost: 0,
+		draw: 0,
+		total: 0,
+		point: 0,
+	},
 	gameHistory: [],
 };
 

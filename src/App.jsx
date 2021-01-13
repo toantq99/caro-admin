@@ -1,12 +1,11 @@
 // libs
 // components
-import LoadingIndicator from "@/components/LoadingIndicator";
 import authConfig from "@/config/auth.json";
 import Main from "@/Main";
 import store from "@/store";
 import history from "@/utils/history";
 import { Auth0Provider } from "@auth0/auth0-react";
-import React, { Suspense } from "react";
+import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
@@ -25,9 +24,7 @@ const App = () => (
 	>
 		<Provider store={store}>
 			<BrowserRouter>
-				<Suspense fallback={<LoadingIndicator />}>
-					<Main />
-				</Suspense>
+				<Main />
 			</BrowserRouter>
 		</Provider>
 	</Auth0Provider>

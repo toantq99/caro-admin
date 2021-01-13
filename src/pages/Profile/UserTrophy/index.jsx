@@ -21,7 +21,7 @@ const UserTrophy = () => {
 					type="circle"
 					status="active"
 					percent={(win / total) * 100}
-					// success={{ percent: (win / total) * 100 }}
+					// success={{ percent: total ? (win / total) * 100 : 0 }}
 					format={(percent) => (
 						<span style={{ fontSize: 24 }}>
 							{Math.round(percent)}%<br />

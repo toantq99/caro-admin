@@ -1,22 +1,31 @@
 import { fetchGameHistorySuccess } from "@/actions/Profile";
 import API_URL from "@/config/API";
+import useRouter from "@/hooks/useRouter";
 import { columns } from "@/pages/Profile/GameHistory/tableCols";
 import { Table } from "antd";
 import Axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import "./style.scss";
+
+const findMostSuitableRoom = () => {
+	return;
+};
+
+setTimeout(() => {
+	findMostSuitableRoom();
+}, 5000);
 
 const GameHistory = () => {
 	const dispatch = useDispatch();
-	const { info, gameHistory } = useSelector((state) => state.profile);
-	const { push } = useHistory();
+	const { gameHistory, info } = useSelector((state) => state.profile);
+	const { params } = useRouter();
+
 	useEffect(() => {
-		Axios.get(API_URL + "/games/" + info.sub)
+		Axios.get(API_URL + "/games/by-user/" + (params || {}).sub)
 			.then((res) => dispatch(fetchGameHistorySuccess(res.data.games)))
 			.catch(() => dispatch(fetchGameHistorySuccess([])));
-	}, [dispatch, info.sub]);
+	}, [dispatch, params]);
 
 	return (
 		<div className="game-history-wrapper">
@@ -28,11 +37,6 @@ const GameHistory = () => {
 				dataSource={gameHistory}
 				pagination={{ pageSize: 5 }}
 				rowKey={(game) => game.id}
-				onRow={(game) => ({
-					onClick: () => {
-						push("/game-replay/" + game.id);
-					},
-				})}
 			/>
 		</div>
 	);

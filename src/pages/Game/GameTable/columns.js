@@ -1,75 +1,68 @@
-import { Button, Space, Tag } from "antd";
+import { Button } from "antd";
 import moment from "moment";
 
-export const columns = ({
-	handleUnblockUser,
-	handleBlockUser,
-	redirectProfile,
-}) => [
+export const columns = [
 	{
 		title: "ID",
 		dataIndex: "id",
 		key: "id",
 	},
 	{
-		title: "Display Name",
-		dataIndex: "displayName",
-		key: "displayName",
+		title: "Player X",
+		key: "xPlayer",
+		dataIndex: "xPlayer",
+		render: (user) => (
+			<a href={"/profile/" + user.sub} target="_blank" rel="noreferrer">
+				{user.displayName}
+			</a>
+		),
 	},
 	{
-		title: "Email",
-		dataIndex: "email",
-		key: "email",
+		title: "Player O",
+		key: "oPlayer",
+		dataIndex: "oPlayer",
+		render: (user) => (
+			<a href={"/profile/" + user.sub} target="_blank" rel="noreferrer">
+				{user.displayName}
+			</a>
+		),
 	},
 	{
-		title: "Provider",
-		dataIndex: "sub",
-		key: "sub",
-		render: (sub) => sub.slice(0, sub.indexOf("|")),
+		title: "Winner",
+		key: "winner",
+		render: (winner, { xPlayer, oPlayer, isDraw }) =>
+			isDraw ? (
+				"Hòa"
+			) : winner === xPlayer.sub ? (
+				<a href={"/profile/" + xPlayer.sub} target="_blank" rel="noreferrer">
+					{xPlayer.displayName}
+				</a>
+			) : (
+				<a href={"/profile/" + oPlayer.sub} target="_blank" rel="noreferrer">
+					{oPlayer.displayName}
+				</a>
+			),
 	},
 	{
-		title: "Point",
+		title: "Điểm",
 		dataIndex: "point",
 		key: "point",
+		render: (point) => point,
 	},
 	{
-		title: "Created At",
-		dataIndex: "created_at",
-		key: "created_at",
-		render: (created_at) =>
-			moment(new Date(created_at)).format("DD/MM/YYYY HH:mm"),
-	},
-	{
-		title: "Status",
-		dataIndex: "isLocked",
-		key: "isLocked",
-		render: (isLocked) =>
-			isLocked ? (
-				<Tag color="magenta">Blocked</Tag>
-			) : (
-				<Tag color="green">Normal</Tag>
-			),
+		title: "Thời gian",
+		dataIndex: "date",
+		key: "date",
+		render: (date) => moment(new Date(date)).fromNow(),
 	},
 	{
 		title: "Actions",
 		key: "actions",
-		render: (user) => (
-			<Space>
-				<a href={"/profile/" + user.sub} target="_blank" rel="noreferrer">
-					<Button onClick>Profile</Button>
-				</a>
-
-				<Button
-					style={{ width: 80 }}
-					type="primary"
-					danger={!user.isLocked}
-					onClick={() =>
-						user.isLocked ? handleUnblockUser(user) : handleBlockUser(user)
-					}
-				>
-					{user.isLocked ? "Unblock" : "Block"}
-				</Button>
-			</Space>
+		dataIndex: "id",
+		render: (id) => (
+			<a href={"/game-replay/" + id} target="_blank" rel="noreferrer">
+				<Button type="primary">Xem</Button>
+			</a>
 		),
 	},
 ];
