@@ -1,6 +1,9 @@
 import { fetchProfileSuccess } from "@/actions/Profile";
 import API_URL from "@/config/API";
 import useRouter from "@/hooks/useRouter";
+import GameHistory from "@/pages/Profile/GameHistory";
+import UserInfo from "@/pages/Profile/UserInfo";
+import UserTrophy from "@/pages/Profile/UserTrophy";
 import { Spin } from "antd";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -26,11 +29,10 @@ const Profile = () => {
 	return (
 		<Spin spinning={loading}>
 			<div className="profile-wrapper">
-				{/* <UserTrophy />
-			<div className="right">
-			<UserInfo />
-			<GameHistory />
-		</div> */}
+				<UserTrophy />
+				<UserInfo />
+
+				<GameHistory />
 			</div>
 		</Spin>
 	);

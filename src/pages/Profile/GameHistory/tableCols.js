@@ -2,15 +2,16 @@ import moment from "moment";
 
 export const columns = ({ user }) => [
 	{
-		title: "STT",
-		dataIndex: "id",
-		key: "id",
+		title: "Thời gian",
+		dataIndex: "date",
+		key: "date",
+		render: (date) => moment(new Date(date)).fromNow(),
 	},
 	{
 		title: "Đối thủ",
 		key: "rival",
 		render: ({ xPlayer, oPlayer }) =>
-			xPlayer.sub === user.sub ? xPlayer.displayName : oPlayer.displayName,
+			xPlayer.sub === user.sub ? oPlayer.displayName : xPlayer.displayName,
 	},
 	{
 		title: "Kết quả",
@@ -23,11 +24,5 @@ export const columns = ({ user }) => [
 		dataIndex: "point",
 		key: "point",
 		render: (point) => point,
-	},
-	{
-		title: "Ngày",
-		dataIndex: "date",
-		key: "date",
-		render: (date) => moment(new Date(date)).fromNow(),
 	},
 ];

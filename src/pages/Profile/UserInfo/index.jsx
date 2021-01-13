@@ -1,56 +1,47 @@
-import { getUserInfo } from "@/actions/profile";
-import useAuth from "@/hooks/useAuth";
-import useAxios from "@/hooks/useAxios";
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import moment from "moment";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./style.scss";
 
 const UserInfo = () => {
-	const { user } = useAuth();
-	const axios = useAxios();
-	const dispatch = useDispatch();
+	const {
+		info: { email, created_at, displayName, name },
+	} = useSelector((state) => state.profile);
+	const [form] = Form.useForm();
+
+	useEffect(() => {
+		form.setFieldsValue({
+			displayName: displayName || name,
+			email,
+			created_at: moment(new Date(created_at)).format("DD/MM/YYYY HH:mm"),
+		});
+	}, [email, created_at, displayName, name, form]);
 
 	return (
 		<div className="user-info-wrapper">
 			<Form
+				form={form}
 				initialValues={{
-					...user,
-					displayName: user.displayName || user.name,
-					joinDate: moment(
-						new Date(user["https://carona.netlify.app/created_at"])
-					).format("DD/MM/YYYY HH:mm"),
+					displayName: displayName || name,
+					email,
+					created_at: moment(new Date(created_at)).format("DD/MM/YYYY HH:mm"),
 				}}
 				layout="vertical"
-				onFinish={({ displayName }) => {
-					axios
-						.post("/users/info/update", {
-							displayName,
-						})
-						.then((res) => {
-							dispatch(getUserInfo(res.data));
-						});
-				}}
 			>
 				<Form.Item
 					name="displayName"
 					label="Tên hiển thị"
 					rules={[{ required: true }]}
 				>
-					<Input />
+					<Input readOnly />
 				</Form.Item>
 				<Form.Item name="email" label="Email">
 					<Input readOnly />
 				</Form.Item>
-				<Form.Item name="joinDate" label="Ngày tham gia">
+				<Form.Item name="created_at" label="Ngày tham gia">
 					<Input readOnly />
 				</Form.Item>
-				<div className="button">
-					<Button type="primary" htmlType="submit" shape="round">
-						Cập nhật thông tin
-					</Button>
-				</div>
 			</Form>
 		</div>
 	);

@@ -4,3 +4,8 @@ export const fetchProfileSuccess = (data) => ({
 	type: PROFILE_ACTION_TYPES.FETCH_PROFILE,
 	payload: data,
 });
+
+export const fetchGameHistorySuccess = (data) => ({
+	type: PROFILE_ACTION_TYPES.FETCH_GAME_HISTORY,
+	payload: data,
+});

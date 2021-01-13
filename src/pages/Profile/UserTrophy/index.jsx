@@ -1,4 +1,3 @@
-import useAuth from "@/hooks/useAuth";
 import { TrophyOutlined } from "@ant-design/icons";
 import { Avatar, Progress, Tag } from "antd";
 import React from "react";
@@ -7,11 +6,7 @@ import "./style.scss";
 
 const UserTrophy = () => {
 	const {
-		user: { picture, displayName },
-	} = useAuth();
-
-	const {
-		trophy: { win, lost, point, total, draw },
+		info: { win, lost, point, total, draw, picture, displayName },
 	} = useSelector((state) => state.profile);
 
 	return (
@@ -25,11 +20,11 @@ const UserTrophy = () => {
 				<Progress
 					type="circle"
 					status="active"
-					percent={((win + draw) / total) * 100}
-					success={{ percent: (win / total) * 100 }}
-					format={(percent, successPercent) => (
+					percent={(win / total) * 100}
+					// success={{ percent: (win / total) * 100 }}
+					format={(percent) => (
 						<span style={{ fontSize: 24 }}>
-							{Math.round(successPercent)}%<br />
+							{Math.round(percent)}%<br />
 							Tỉ lệ thắng
 						</span>
 					)}
