@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 export const columns = ({ user }) => [
 	{
@@ -18,13 +19,9 @@ export const columns = ({ user }) => [
 		key: "rival",
 		render: ({ xPlayer, oPlayer }) =>
 			xPlayer.sub === user.sub ? (
-				<a href={"/profile/" + oPlayer.sub} target="_blank" rel="noreferrer">
-					{oPlayer.displayName}
-				</a>
+				<Link to={"/profile/" + oPlayer.sub}>{oPlayer.displayName}</Link>
 			) : (
-				<a href={"/profile/" + xPlayer.sub} target="_blank" rel="noreferrer">
-					{xPlayer.displayName}
-				</a>
+				<Link to={"/profile/" + xPlayer.sub}>{xPlayer.displayName}</Link>
 			),
 	},
 	{
@@ -43,9 +40,9 @@ export const columns = ({ user }) => [
 		key: "actions",
 		dataIndex: "id",
 		render: (id) => (
-			<a href={"/game-replay/" + id} target="_blank" rel="noreferrer">
+			<Link to={"/game-replay/" + id}>
 				<Button type="primary">Xem</Button>
-			</a>
+			</Link>
 		),
 	},
 ];

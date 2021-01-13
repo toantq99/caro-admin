@@ -1,5 +1,6 @@
 import { Button, Space, Tag } from "antd";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 export const columns = ({
 	handleUnblockUser,
@@ -55,10 +56,9 @@ export const columns = ({
 		key: "actions",
 		render: (user) => (
 			<Space>
-				<a href={"/profile/" + user.sub} target="_blank" rel="noreferrer">
+				<Link to={"/profile/" + user.sub}>
 					<Button onClick>Thông tin</Button>
-				</a>
-
+				</Link>
 				<Button
 					style={{ width: 80 }}
 					type="primary"

@@ -2,7 +2,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Layout, Menu } from "antd";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./style.scss";
 
 const { Header, Content } = Layout;
@@ -21,7 +21,9 @@ const AppLayout = ({ children }) => {
 					alignItems: "center",
 				}}
 			>
-				<h1 style={{ color: "white", margin: 0 }}>Carona Admin</h1>
+				<Link to="/">
+					<h1 style={{ color: "white", margin: 0 }}>Carona Admin</h1>
+				</Link>
 
 				<Button type="link" style={{ color: "white" }} onClick={logout}>
 					Đăng xuất

@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 export const columns = [
 	{
@@ -12,9 +13,7 @@ export const columns = [
 		key: "xPlayer",
 		dataIndex: "xPlayer",
 		render: (user) => (
-			<a href={"/profile/" + user.sub} target="_blank" rel="noreferrer">
-				{user.displayName}
-			</a>
+			<Link to={"/profile/" + user.sub}>{user.displayName}</Link>
 		),
 	},
 	{
@@ -22,9 +21,7 @@ export const columns = [
 		key: "oPlayer",
 		dataIndex: "oPlayer",
 		render: (user) => (
-			<a href={"/profile/" + user.sub} target="_blank" rel="noreferrer">
-				{user.displayName}
-			</a>
+			<Link to={"/profile/" + user.sub}>{user.displayName}</Link>
 		),
 	},
 	{
@@ -34,13 +31,9 @@ export const columns = [
 			isDraw ? (
 				"Hòa"
 			) : winner === xPlayer.sub ? (
-				<a href={"/profile/" + xPlayer.sub} target="_blank" rel="noreferrer">
-					{xPlayer.displayName}
-				</a>
+				<Link to={"/profile/" + xPlayer.sub}>{xPlayer.displayName}</Link>
 			) : (
-				<a href={"/profile/" + oPlayer.sub} target="_blank" rel="noreferrer">
-					{oPlayer.displayName}
-				</a>
+				<Link to={"/profile/" + oPlayer.sub}>{oPlayer.displayName}</Link>
 			),
 	},
 	{
@@ -60,9 +53,9 @@ export const columns = [
 		key: "actions",
 		dataIndex: "id",
 		render: (id) => (
-			<a href={"/game-replay/" + id} target="_blank" rel="noreferrer">
+			<Link to={"/game-replay/" + id}>
 				<Button type="primary">Xem</Button>
-			</a>
+			</Link>
 		),
 	},
 ];
