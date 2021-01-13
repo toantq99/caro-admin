@@ -1,0 +1,10 @@
+.profile-wrapper {
+	display: grid;
+	grid-template-columns: 450px auto;
+	column-gap: 20px;
+	.right {
+		display: grid;
+		grid-template-rows: 350px auto;
+		row-gap: 10px;
+	}
+}

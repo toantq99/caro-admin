@@ -1,4 +1,4 @@
-import { Game, Home, NotFound, User } from "@/routers/lazyRoutes";
+import { Game, Home, NotFound, Profile, User } from "@/routers/lazyRoutes";
 import React from "react";
 import { Redirect } from "react-router-dom";
 
@@ -25,6 +25,12 @@ const privateRoutes = [
 		key: "game",
 		path: "/game",
 		component: Game,
+		exact: true,
+	},
+	{
+		key: "profile",
+		path: "/profile/:sub",
+		component: Profile,
 		exact: true,
 	},
 	{
